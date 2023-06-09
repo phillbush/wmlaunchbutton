@@ -1,0 +1,66 @@
+.Dd June 9, 2023
+.Dt WMLAUNCHBUTTON 1
+.Os
+.Sh NAME
+.Nm mwlaunchbutton
+.Nd docked button to launch a command
+.Sh SYNOPSIS
+.Nm wmlaunchbutton
+.Ar pixmap
+.Oo
+.Ar pixmap
+.Op Ar pixmap
+.Oc
+.Ar command
+.Sh DESCRIPTION
+.Nm
+creates a docked application with the size, shape and content
+of the given pixmap to act as a button that runs the given
+.Ar command
+with
+.Xr sh 1
+when activated.
+The docked button is activated by pressing the first mouse button on the dockapp.
+.Pp
+If only a single
+.Ar pixmap
+argument is provided, it is used to draw the button in all of its states.
+.Pp
+If two
+.Ar pixmap
+arguments are provided,
+the first one is used as the button when it is inactive,
+and the second one is used as the button when hovered or active.
+.Pp
+If three
+.Ar pixmap
+arguments are provided,
+the first one is used as the button when it is inactive,
+the second one is used as the button when hovered,
+and the third one is used as the button when active,
+.Pp
+.Nm
+sets the environment variable
+.Ev BUTTON_GEOMETRY
+with the position and size of the button in a format to parseable by
+.Xr XParseGeometry 3 .
+That is, in the format
+.Ic "<WIDTH>x<HEIGHT>+<X>+<Y>" .
+.Sh ENVIRONMENT
+The following environment variables affect the execution of
+.Nm .
+.Bl -tag -width Ds
+.It Ev DISPLAY
+The display to start
+.Nm
+on.
+.El
+.Pp
+The following environment are set by
+.Nm .
+.Bl -tag -width Ds
+.It Ev BUTTON_GEOMETRY
+Set to the size and position of the button.
+.El
+.Sh SEE ALSO
+.Xr X 7

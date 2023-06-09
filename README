@@ -1,0 +1,45 @@
+WMLAUNCHBUTTON(1)           General Commands Manual          WMLAUNCHBUTTON(1)
+
+NAME
+     mwlaunchbutton  docked button to launch a command
+
+SYNOPSIS
+     wmlaunchbutton pixmap [pixmap [pixmap]] command
+
+DESCRIPTION
+     mwlaunchbutton creates a docked application with the size, shape and
+     content of the given pixmap to act as a button that runs the given
+     command with sh(1) when activated.  The docked button is activated by
+     pressing the first mouse button on the dockapp.
+
+     If only a single pixmap argument is provided, it is used to draw the
+     button in all of its states.
+
+     If two pixmap arguments are provided, the first one is used as the button
+     when it is inactive, and the second one is used as the button when
+     hovered or active.
+
+     If three pixmap arguments are provided, the first one is used as the
+     button when it is inactive, the second one is used as the button when
+     hovered, and the third one is used as the button when active,
+
+     mwlaunchbutton sets the environment variable BUTTON_GEOMETRY with the
+     position and size of the button in a format to parseable by
+     XParseGeometry(3).  That is, in the format <WIDTH>x<HEIGHT>+<X>+<Y>.
+
+ENVIRONMENT
+     The following environment variables affect the execution of
+     mwlaunchbutton.
+
+     DISPLAY
+             The display to start mwlaunchbutton on.
+
+     The following environment are set by mwlaunchbutton.
+
+     BUTTON_GEOMETRY
+             Set to the size and position of the button.
+
+SEE ALSO
+     X(7)
+
+UNIX                             June 9, 2023                             UNIX
