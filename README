@@ -1,7 +1,7 @@
 WMLAUNCHBUTTON(1)           General Commands Manual          WMLAUNCHBUTTON(1)
 
 NAME
-     mwlaunchbutton  docked button to launch a command
+     mwlaunchbutton - docked button to launch a command
 
 SYNOPSIS
      wmlaunchbutton pixmap [pixmap [pixmap]] command

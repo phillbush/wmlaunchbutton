@@ -20,7 +20,7 @@ mandir = ${DESTDIR}${MANPREFIX}/man1
 all: ${PROG}
 
 README: ${MAN}
-	mandoc -I os=UNIX -T utf8 ${MAN} | col -b | expand -t 8 >$@
+	mandoc -I os=UNIX -T ascii ${MAN} | col -b | expand -t 8 >$@
 
 ${PROG}: ${OBJS}
 	${CC} -o $@ ${OBJS} ${LIBS} ${LDFLAGS}
