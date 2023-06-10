@@ -120,6 +120,8 @@ run(Display *display, Window window, struct Button *buttons, char *cmd)
 			setbackground(display, window, &buttons[BUTTON_INACTIVE]);
 			break;
 		case ButtonPress:
+			if (xevent.xbutton.button != Button1)
+				break;
 			XUngrabPointer(display, xevent.xbutton.time);
 			setbackground(display, window, &buttons[BUTTON_ACTIVE]);
 			spawncmd(&geometry, cmd);
