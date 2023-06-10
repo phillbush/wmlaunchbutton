@@ -52,7 +52,7 @@ spawncmd(struct Rectangle *geometry, char *cmd)
 		geometry->x,
 		geometry->y
 	);
-	setenv("GEOMETRY", buf, 1);
+	setenv("BUTTON_GEOMETRY", buf, 1);
 	switch (fork()) {
 	case -1:
 		warn("fork");
