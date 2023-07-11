@@ -1,6 +1,7 @@
 #include <sys/wait.h>
 
 #include <err.h>
+#include <errno.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -42,6 +43,7 @@ usage(void)
 static void
 spawncmd(struct Rectangle *geometry, char *cmd)
 {
+	pid_t pid;
 	char buf[64];
 
 	snprintf(
@@ -53,7 +55,7 @@ spawncmd(struct Rectangle *geometry, char *cmd)
 		geometry->y
 	);
 	setenv("BUTTON_GEOMETRY", buf, 1);
-	switch (fork()) {
+	switch (pid = fork()) {
 	case -1:
 		warn("fork");
 		break;
@@ -64,7 +66,9 @@ spawncmd(struct Rectangle *geometry, char *cmd)
 		);
 		err(EXIT_FAILURE, "%s", cmd);
 	default:        /* parent */
-		wait(NULL);
+		while (waitpid(pid, NULL, 0) == -1)
+			if (errno != EINTR)
+				err(EXIT_FAILURE, "waitpid");
 		break;
 	}
 }
